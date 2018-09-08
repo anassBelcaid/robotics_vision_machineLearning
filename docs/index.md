@@ -5,7 +5,6 @@ layout: default
 ---
 
 In this repo I gather my notes and homework solution for the edx course [Robotics : Computer Vision and Machine learning](www.google.com).
-
 ## Geometry: ##
 
 [Dolly Zoom](/dolly_zoom/)
