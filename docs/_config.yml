@@ -24,7 +24,7 @@ github_username:  anassBelcaid
 
 # Build settings
 markdown: kramdown
-theme: jekyll-theme-merlot
+theme: jekyll-theme-leap-day
 plugins:
   - jekyll-feed
 # Exclude from processing.
