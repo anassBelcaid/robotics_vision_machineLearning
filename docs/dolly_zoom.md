@@ -53,11 +53,47 @@ function [ f ] = compute_focal_length( d_ref, f_ref, pos )
 % - f: 1 by n, camera focal length
 
 % Put your CODE here
-f = 
+f = (f_ref/d_ref).*(d_ref - pos); 
 
 end
 {% endhighlight %}
 
 
+## Compute focal length and position ##
+
+
+For the second part of this lab, you need to implement the function `compute_f_pos`. This time you are given the distances of two objects ( $d_1$ and $d_2$ ) and their corresponding heights in the physical world ( $H_1$ and $H_2$  respectively), and for a specified original focal length $f_{ref}$, you need to estimate the modified focal length $f$ such that the ratio of the heights of the two objects in the image $\dfrac{h_1}{h_2}$ is the same as the input value $ratio$ , while the height  of the first object remains constant. The description and the notation of the problem is the same as the one presented in the previous part, so you can use it as reference.
+
+
+{%highlight matlab%}
+function [ f, pos ] = compute_f_pos( d1_ref, d2_ref, H1, H2, ratio, f_ref )
+% compute camera focal length and camera position to achieve centain ratio
+% between objects
+%
+% Input:
+% - d1_ref: distance of the first object
+% - d2_ref: distance of the second object
+% - H1: height of the first object in physical world
+% - H2: height of the second object in physical world
+% - ratio: ratio between two objects (h1/h2)
+% - f_ref: 1 by 1 double, previous camera focal length
+% Output:
+% - f: 1 by 1, camera focal length
+% - pos: 1 by 1, camera position
+
+% Put your CODE here
+% constructing the system
+
+
+A = [ d1_ref, f_ref ; d1_ref*ratio*H2, f_ref*H1];
+b= [d1_ref*f_ref; d2_ref*f_ref*H1];
+
+%solving the system
+X= A\b;
+f = X(1);
+pos = X(2);
+
+
+{%endhighlight%}
 
 
